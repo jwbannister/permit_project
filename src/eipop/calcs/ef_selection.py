@@ -6,12 +6,15 @@ stationary compression-ignition (diesel) internal combustion engines:
   1. NSPS/CFR standards (40 CFR 60 Subpart IIII → 40 CFR 1039.101)
      — PM, CO, NOx for engines subject to NSPS
   2. Mass balance — SO2 from fuel sulfur content
-  3. AP-42 Table 3.3-1 — VOC (and fallback for non-NSPS engines)
+  3. AP-42 VOC — Table 3.3-1 for industrial engines (<600 hp),
+     Table 3.4-1 for large stationary engines (≥600 hp)
 
 References:
   - 40 CFR Part 60, Subpart IIII: Standards for Stationary CI ICE
   - 40 CFR 1039.101: Exhaust emission standards for nonroad CI engines
   - AP-42, Chapter 3.3: Gasoline and Diesel Industrial Engines (10/96)
+  - AP-42, Chapter 3.4: Large Stationary Diesel and All Stationary
+    Dual-fuel Engines (10/96)
 """
 
 from dataclasses import dataclass
@@ -81,6 +84,32 @@ class AP42DieselFactors:
 AP42_DIESEL = AP42DieselFactors()
 
 
+# ──────────────────────────────────────────────────────────────────
+# AP-42 Table 3.4-1: Large stationary diesel engine emission factors
+# For engines ≥600 hp. Chapter 3.4 (10/96).
+# TOC = 0.10 lb/MMBtu (fuel input basis).
+# At standard BSFC of 7000 Btu/hp-hr: 0.10 * 7000/1e6 = 7.0e-4 lb/hp-hr
+# Plus crankcase contribution of 5.0e-6 lb/hp-hr = total 7.05e-4 lb/hp-hr
+# ──────────────────────────────────────────────────────────────────
+
+@dataclass(frozen=True)
+class AP42LargeDieselFactors:
+    """AP-42 Table 3.4-1 large diesel emission factors in lb/hp-hr."""
+    TOC_exhaust: float = 7.0e-4
+    TOC_crankcase: float = 5.0e-6
+
+    @property
+    def VOC_lb_hp_hr(self) -> float:
+        """Total VOC = TOC exhaust + crankcase."""
+        return self.TOC_exhaust + self.TOC_crankcase
+
+
+AP42_LARGE_DIESEL = AP42LargeDieselFactors()
+
+# Boundary between Table 3.3-1 and 3.4-1 (in hp)
+_LARGE_ENGINE_HP_THRESHOLD = 600
+
+
 def lb_hp_hr_to_g_kw_hr(val: float) -> float:
     """Convert lb/hp-hr to g/kW-hr using Conv sheet constants."""
     return val * CONV.g_per_lb * CONV.hp_per_kW
@@ -124,13 +153,22 @@ def select_emission_factors(
     so2_source = f"Mass balance, {CONV.diesel_sulfur_ppm} ppm S diesel"
 
     # Step 3: VOC from AP-42
-    voc_ef = lb_hp_hr_to_g_kw_hr(AP42_DIESEL.VOC_lb_hp_hr)
-    voc_source = "AP-42 Table 3.3-1 (TOC exhaust + crankcase)"
+    # Engines ≥600 hp use Table 3.4-1 (large stationary diesel)
+    # Engines <600 hp use Table 3.3-1 (industrial diesel)
+    hp = kW * CONV.hp_per_kW
+    if hp >= _LARGE_ENGINE_HP_THRESHOLD:
+        voc_ef = lb_hp_hr_to_g_kw_hr(AP42_LARGE_DIESEL.VOC_lb_hp_hr)
+        voc_source = "AP-42 Table 3.4-1 (TOC exhaust + crankcase)"
+        voc_ref = "VOC AP-42, Table 3.4-1 (10/96)"
+    else:
+        voc_ef = lb_hp_hr_to_g_kw_hr(AP42_DIESEL.VOC_lb_hp_hr)
+        voc_source = "AP-42 Table 3.3-1 (TOC exhaust + crankcase)"
+        voc_ref = "VOC AP-42, Table 3.3-1 (10/96)"
 
     ref_parts = [
         f"Table 4 to 40 CFR 60, Subpart IIII, {tier.label}",
         f"SO2 Mass balance based on {CONV.diesel_sulfur_ppm} ppm S",
-        "VOC AP-42, Table 3.3-1 (10/96)",
+        voc_ref,
     ]
 
     return EmissionFactors(

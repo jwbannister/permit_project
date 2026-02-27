@@ -1,9 +1,12 @@
 """End-to-end validation: Python calc engine vs reference workbook.
 
-This test feeds hardcoded S2.002 inputs through the calculation engine
-and compares every output value against the reference workbook row 7.
-No Excel recalculation is involved — this validates the Python engine
-independently.
+This test feeds inputs through the calculation engine and compares every
+output value against the reference workbook. No Excel recalculation is
+involved — this validates the Python engine independently.
+
+Sources validated:
+  - S2.002 (row 7): Emergency Fire Water Pump, 129 kW diesel
+  - S2.001 (row 6): Emergency Generator, 560 kW diesel
 """
 
 from pathlib import Path
@@ -18,6 +21,7 @@ from eipop.calcs.diesel_engine import (
     stack_velocity_fps,
     fuel_consumption_MMBtu_hr,
 )
+from eipop.calcs.ef_selection import select_emission_factors
 from eipop.calcs.emission_rates import calc_all_rates
 from eipop.calcs.model_rates import lb_hr_to_g_s, ton_yr_to_g_s, model_emission_rates
 from eipop.validation.compare import (
@@ -234,4 +238,155 @@ class TestPythonCalcValidation:
 
         matched = sum(1 for r in results if r.status == CellStatus.MATCH)
         # We should match at least 70 cells (inputs + all calculated rates)
+        assert matched >= 70, f"Only {matched} matches — expected at least 70"
+
+
+# === S2.001 emergency generator inputs ===
+S2001_KW = 560.0
+S2001_FUEL_GAL_HR = 37.55
+S2001_HRS_DAY = 24.0
+S2001_HRS_YR = 100.0
+S2001_TEMP_F = 1100.0
+S2001_ACFM = 5429.827606109162
+S2001_REL_HT_FT = 6.0
+S2001_DIA_FT = 0.6666666666666666
+S2001_NOX_ISR = 0.2
+
+
+def _build_s2001_values() -> dict[str, object]:
+    """Run the full calculation chain for S2.001 and return all computed values."""
+    kW = S2001_KW
+    efs = select_emission_factors(kW=kW, fuel_type="diesel",
+                                  fuel_consumption_gal_hr=S2001_FUEL_GAL_HR)
+
+    hp = kw_to_hp(kW)
+    mmbtu_hr = fuel_consumption_MMBtu_hr(S2001_FUEL_GAL_HR, "diesel")
+
+    ef_dict = {
+        "PM": efs.PM.value, "PM10": efs.PM10.value, "PM2.5": efs.PM2_5.value,
+        "CO": efs.CO.value, "NOx": efs.NOx.value,
+        "SO2": efs.SO2.value, "VOC": efs.VOC.value,
+    }
+    rates = calc_all_rates(ef_dict, efs.ef_unit, kW, "bkW",
+                           S2001_HRS_DAY, S2001_HRS_YR)
+    vel_fps = stack_velocity_fps(S2001_ACFM, S2001_DIA_FT)
+    model = model_emission_rates(rates, is_emergency=True, nox_isr=S2001_NOX_ISR)
+
+    values = {}
+    values["source_id"] = "S2.001"
+    values["source_count"] = 1
+    values["new_or_modified"] = "Yes"
+    values["system_id"] = 1
+    values["system_desc"] = "Emergency Power"
+    values["scc"] = "2-02-001-02"
+    values["source_desc"] = "Emergency Generator (kW ≤ 560; mfg. 2007 or newer)"
+    values["throughput_unit"] = "bkW"
+    values["throughput_material"] = "diesel"
+    values["operating_hrs_day"] = S2001_HRS_DAY
+    values["operating_hrs_yr"] = S2001_HRS_YR
+    values["kW"] = kW
+    values["fuel_type"] = "diesel"
+    values["fuel_consumption"] = S2001_FUEL_GAL_HR
+    values["fuel_unit"] = "gal"
+    values["displacement_L"] = 16.4
+    values["cylinders"] = 8
+    values["tier"] = 3
+    values["emission_code"] = "ECI"
+    values["EF_PM"] = efs.PM.value
+    values["EF_CO"] = efs.CO.value
+    values["EF_NOx"] = efs.NOx.value
+    values["EF_unit"] = efs.ef_unit
+    values["ctrl_system"] = "None"
+    values["source_type"] = "POINT"
+    values["exhaust_temp_F"] = S2001_TEMP_F
+    values["acfm"] = S2001_ACFM
+    values["NOx_ISR"] = S2001_NOX_ISR
+    values["is_emergency"] = True
+
+    values["throughput_hr"] = kW
+    values["throughput_day"] = kW * S2001_HRS_DAY
+    values["throughput_yr"] = kW * S2001_HRS_YR
+    values["hp"] = hp
+    values["MMBtu_hr"] = mmbtu_hr
+    values["EF_PM10"] = efs.PM10.value
+    values["EF_PM2_5"] = efs.PM2_5.value
+    values["EF_SO2"] = efs.SO2.value
+    values["EF_VOC"] = efs.VOC.value
+
+    for pol in ["PM", "PM10", "CO", "NOx", "SO2", "VOC"]:
+        values[f"{pol}_pph"] = rates[pol]["pph"]
+        values[f"{pol}_ppd"] = rates[pol]["ppd"]
+        values[f"{pol}_tpy"] = rates[pol]["tpy"]
+    values["PM2_5_pph"] = rates["PM2.5"]["pph"]
+    values["PM2_5_ppd"] = rates["PM2.5"]["ppd"]
+    values["PM2_5_tpy"] = rates["PM2.5"]["tpy"]
+
+    values["release_height_ft"] = S2001_REL_HT_FT
+    values["diameter_ft"] = S2001_DIA_FT
+    values["velocity_fps"] = vel_fps
+    values["release_height_m"] = ft_to_m(S2001_REL_HT_FT)
+    values["temp_K"] = temp_F_to_K(S2001_TEMP_F)
+    values["velocity_mps"] = vel_fps / 3.28084
+    values["diameter_m"] = ft_to_m(S2001_DIA_FT)
+
+    values["PM10_24_gps"] = model["PM10_24_gps"]
+    values["PM2_5_24_gps"] = model["PM2_5_24_gps"]
+    values["CO_ALL_gps"] = model["CO_ALL_gps"]
+    values["NOx_1_gps"] = model["NOx_1_gps"]
+    values["SO2_1_gps"] = model["SO2_1_gps"]
+    values["SO2_ST_gps"] = model["SO2_ST_gps"]
+    values["PM2_5_AN_gps"] = model["PM2_5_AN_gps"]
+    values["NOx_AN_gps"] = model["NOx_AN_gps"]
+    values["SO2_AN_gps"] = model["SO2_AN_gps"]
+    values["NOx_model_pph"] = model["NOx_model_pph"]
+    values["SO2_model_pph"] = model["SO2_model_pph"]
+
+    values["EF_PM_u"] = efs.PM.value
+    values["EF_PM10_u"] = efs.PM10.value
+    values["EF_PM2_5_u"] = efs.PM2_5.value
+    values["EF_CO_u"] = efs.CO.value
+    values["EF_NOx_u"] = efs.NOx.value
+    values["EF_SO2_u"] = efs.SO2.value
+    values["EF_VOC_u"] = efs.VOC.value
+    values["EF_unit_u"] = efs.ef_unit
+    for pol in ["PM", "PM10", "CO", "NOx", "SO2", "VOC"]:
+        values[f"{pol}_pph_u"] = rates[pol]["pph"]
+        values[f"{pol}_tpy_u"] = rates[pol]["tpy"]
+    values["PM2_5_pph_u"] = rates["PM2.5"]["pph"]
+    values["PM2_5_tpy_u"] = rates["PM2.5"]["tpy"]
+
+    return values
+
+
+class TestS2001Validation:
+    """Compare Python calculation engine output for S2.001 (emergency generator)."""
+
+    def test_all_values_match_reference(self):
+        actual = _build_s2001_values()
+        results = compare_row_to_reference(REFERENCE, 6, actual, rel_tol=1e-3)
+
+        report = format_report(results, show_all=False)
+        print("\n" + report)
+
+        mismatches = [r for r in results if r.status == CellStatus.MISMATCH]
+        missing = [r for r in results if r.status == CellStatus.MISSING]
+
+        if mismatches:
+            details = "\n".join(
+                f"  {r.column} ({r.field}): expected={r.expected}, actual={r.actual}, error={r.error_pct}"
+                for r in mismatches
+            )
+            pytest.fail(f"{len(mismatches)} mismatched values:\n{details}")
+
+        if missing:
+            details = "\n".join(
+                f"  {r.column} ({r.field}): expected={r.expected}"
+                for r in missing
+            )
+            pytest.fail(f"{len(missing)} missing values:\n{details}")
+
+    def test_match_count(self):
+        actual = _build_s2001_values()
+        results = compare_row_to_reference(REFERENCE, 6, actual, rel_tol=1e-3)
+        matched = sum(1 for r in results if r.status == CellStatus.MATCH)
         assert matched >= 70, f"Only {matched} matches — expected at least 70"

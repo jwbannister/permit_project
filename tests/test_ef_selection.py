@@ -105,3 +105,32 @@ class TestSelectEmissionFactors:
         with pytest.raises(NotImplementedError):
             select_emission_factors(kW=100, fuel_type="natural_gas",
                                     fuel_consumption_gal_hr=10.0)
+
+
+class TestSelectEFsS2001:
+    """Test EF selection for S2.001 (560 kW emergency generator).
+
+    Uses AP-42 Table 3.4-1 for VOC (large engine, ≥600 hp).
+    """
+
+    @pytest.fixture(scope="class")
+    def efs(self):
+        return select_emission_factors(
+            kW=560.0, fuel_type="diesel", fuel_consumption_gal_hr=37.55,
+        )
+
+    def test_pm(self, efs):
+        assert efs.PM.value == 0.2
+
+    def test_co(self, efs):
+        assert efs.CO.value == 3.5
+
+    def test_nox(self, efs):
+        assert efs.NOx.value == 4.0
+
+    def test_voc_uses_table_3_4_1(self, efs):
+        assert efs.VOC.value == pytest.approx(0.42882814476, rel=1e-10)
+        assert "3.4-1" in efs.VOC.source
+
+    def test_so2(self, efs):
+        assert efs.SO2.value == pytest.approx(0.006471699742892123, rel=1e-6)
