@@ -58,7 +58,7 @@ Client Data (equipment specs, site plan, operating parameters)
 | Equipment specifications | Client / manufacturer datasheets | Cummins 1000 kW T4 diesel engine specs |
 | Fuel types and consumption rates | Client operating parameters | ULSD, LPG consumption rates |
 | Operating hours (annual) | Client / regulatory assumptions | 500 hrs/yr for emergency generator |
-| AP-42 emission factors | EPA AP-42 compilation | Chapter 3.3 (diesel engines), Chapter 1.5 (LPG combustion) |
+| Emission factors (hierarchical) | NSPS/CFR standards, EPA AP-42, mass balance | 40 CFR 60 Subpart IIII Tier standards (diesel), AP-42 Ch. 3.3/1.5 (fallback), fuel sulfur mass balance (SO2) |
 | GHG emission factors | EPA mandatory reporting rule | 40 CFR Part 98 |
 | HAP speciation profiles | EPA speciation data | Diesel exhaust HAP fractions |
 | Source coordinates | Site plan / surveyor data | UTM Zone 11N coordinates |

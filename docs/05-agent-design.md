@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This document defines the modular agent architecture for reproducing the Work Force Hub air quality permitting project. Rather than proposing a single end-to-end system, it decomposes the permitting workflow into eight independent modules — each with defined inputs, outputs, and a clear assessment of where AI adds the most value.
+This document defines the modular agent architecture for an AI-assisted air quality permitting tool. The goal is a generalizable system that can execute permitting projects end-to-end — not a script that reproduces one specific project. However, we validate the system by running it against a completed reference project (270-10-1: Work Force Hub) where both the inputs and correct outputs are known.
 
 The architecture follows directly from the deliverable chain mapped in [04-deliverable-chain.md](04-deliverable-chain.md) and the time analysis in [03-time-analysis.md](03-time-analysis.md). Module boundaries align with the natural seams in the permitting workflow where data formats change or professional judgment is required.
 
@@ -27,6 +27,17 @@ Even modules rated "low" for full automation may be excellent candidates for AI 
 ### 3. Validate against known outputs
 
 Each module is tested by feeding it the same inputs the human team used on 270-10-1 and comparing its outputs to the actual project deliverables. This is the only credible way to assess capability — not hypothetical reasoning about what AI "should" be able to do, but direct comparison against known-good work product.
+
+### 4. Iterative by design, validated in single-pass
+
+Real permitting projects are not linear pipelines. The reference project went through 5 modeling iterations over ~4 weeks — draft outputs were reviewed, errors found, inputs revised, and downstream work rerun. This is normal, not exceptional. The architecture must treat iteration as a first-class concern:
+
+- **Modules produce draft outputs, not final outputs.** Every module's output is subject to review (human or automated QA) and revision. The interface is not just `execute()` — it is `execute() → review() → revise()`.
+- **Upstream corrections propagate downstream.** When an emission factor is changed in Module 1, affected AERMOD inputs (Module 2), results (Module 4), forms (Module 5), and reports (Module 6) must be identifiable and re-generable. Modules track which upstream values they depend on.
+- **Each module exposes a revision interface.** Beyond initial population, modules must support targeted updates — changing one source's emission factor without re-running the entire pipeline, or updating one pollutant's modeling scenario without regenerating all 45 INP files.
+- **State is persistent and inspectable.** Between iterations, the system retains its current state (populated workbook, generated files, validation results) so that a reviewer can examine intermediate outputs, flag issues, and request targeted corrections.
+
+For the 270-10-1 validation, we run the system in single-pass mode — inputs in, outputs out, compare to reference. But the system is designed so that when applied to a new project with unknown outputs, the review-revise cycle works naturally. The reference project tests the calculation engine; real-world use tests the iteration workflow.
 
 ## Module Overview
 
@@ -69,7 +80,7 @@ Populate the 14-sheet emissions inventory workbook (`LN WFH EmisInv_LnPwr_r1_NDE
 | Equipment specifications | Client datasheets | Manufacturer spec sheets in project files |
 | Fuel types and consumption rates | Client operating parameters | Client data package |
 | Operating hours (annual) | Client / regulatory assumptions | Proposal or client correspondence |
-| AP-42 emission factors | EPA AP-42 compilation | Chapters 1.5, 3.3, 3.4 |
+| Emission factors (hierarchical) | NSPS/CFR standards, AP-42, mass balance | 40 CFR 60 Subpart IIII (diesel Tier standards), AP-42 Chapters 1.5/3.3/3.4, fuel sulfur mass balance |
 | GHG emission factors | 40 CFR Part 98 | EPA mandatory reporting rule |
 | HAP speciation profiles | EPA speciation data | Diesel exhaust HAP fractions |
 | Regulatory thresholds | Nevada Class II permit rules | NDEP guidance documents |
@@ -86,9 +97,9 @@ Populate the 14-sheet emissions inventory workbook (`LN WFH EmisInv_LnPwr_r1_NDE
 
 ### Full Automation Approach
 
-AI reads client equipment data (PDFs, spreadsheets, emails), identifies each emission source, selects the correct AP-42 emission factor chapter and table, and populates every cell in the Proc sheet's 154 columns. It then propagates calculated values to HAP&GHG, Tanks, Summary, and other dependent sheets.
+AI reads client equipment data (PDFs, spreadsheets, emails), identifies each emission source, selects the correct emission factor from the applicable regulatory hierarchy, and populates every cell in the Proc sheet's 154 columns. It then propagates calculated values to HAP&GHG, Tanks, Summary, and other dependent sheets.
 
-**Key challenge:** Selecting the correct emission factor from AP-42 requires matching equipment type, fuel, control device, and operating conditions to the right table and row. This is a lookup task but the factor tables are large and the matching logic is nuanced (e.g., different factors for different engine tiers, different LPG appliance types).
+**Key challenge:** Emission factor selection follows a regulatory hierarchy, not a single lookup table. For equipment subject to New Source Performance Standards (NSPS), federal standards (e.g., 40 CFR 60 Subpart IIII Tier standards for diesel engines in g/bkW-hr) take precedence over generic AP-42 factors. Some pollutants use mass balance calculations (e.g., SO2 from fuel sulfur content). AP-42 serves as the fallback for pollutants not covered by NSPS or mass balance (e.g., VOC). The agent must determine which source applies for each pollutant on each piece of equipment — matching equipment type, manufacture date, power rating, and fuel to the correct regulatory tier and factor table.
 
 **Feasibility:** Medium-High. The emission factor selection is well-documented in EPA guidance and the calculation formulas are deterministic. The 154-column Proc sheet is large but each column follows a repeatable pattern. The main risk is edge cases in factor selection.
 

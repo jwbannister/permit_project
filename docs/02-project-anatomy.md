@@ -225,6 +225,7 @@ Feb 2026    System 1 actual startup notification filed
 
 | Source | Equipment | Fuel | Status |
 |--------|-----------|------|--------|
-| Backup Generator/Fire Pump | Cummins 1000 kW T4 diesel | ULSD | Permitted |
-| Heating Systems | Multiple propane units | LPG | Permitted |
+| Backup Generator (S2.001) | Cummins 1000 kW Tier 4 diesel | ULSD | Permitted |
+| Fire Pump (S2.002) | Clarke JU6H-UFABL0, 129 kW diesel | ULSD | Permitted |
+| Heating Systems (IA1.xxx) | Multiple propane units | LPG | Permitted |
 | Storage Tanks | Propane storage | LPG | Permitted |

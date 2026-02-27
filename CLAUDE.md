@@ -29,7 +29,8 @@ permit_project/
 │   ├── 02-project-anatomy.md    # Detailed analysis of the reference project
 │   ├── 03-time-analysis.md      # Complete time entry log with work descriptions
 │   ├── 04-deliverable-chain.md  # Input/output mapping for each deliverable
-│   └── 05-agent-design.md       # Modular agent architecture — 8 modules with automation assessments
+│   ├── 05-agent-design.md       # Modular agent architecture — 8 modules with automation assessments
+│   └── 06-success-criteria.md   # Three-tier success definition: calculation, regulatory, generalization
 ├── data/
 │   ├── bqe_all_projects.json    # Full BQE project dump (3,987 projects)
 │   ├── bqe_candidates.json      # Filtered candidate projects

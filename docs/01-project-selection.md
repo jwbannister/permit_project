@@ -166,7 +166,7 @@ We performed a comprehensive review of both directory structures, file types, de
 
 5. **File readability.** Many deliverables are in Word (.docx) and Excel (.xlsx/.xlsm) format, which are binary files not directly readable by text-based tools. PDF versions of key documents were available and reviewed. Full content analysis of Word documents would require additional tooling.
 
-6. **Scope of "reproduction."** We have not yet defined precisely what "reproduce" means — whether the AI agent needs to generate identical documents, functionally equivalent documents, or just follow the same analytical process. This will be addressed in subsequent documentation.
+6. **Scope of "reproduction."** What "success" means — calculation correctness, regulatory equivalence, and generalizability — is defined in [06-success-criteria.md](06-success-criteria.md).
 
 ## Date
 
