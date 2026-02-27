@@ -28,8 +28,8 @@ permit_project/
 │   ├── 01-project-selection.md  # How and why we chose this project
 │   ├── 02-project-anatomy.md    # Detailed analysis of the reference project
 │   ├── 03-time-analysis.md      # Complete time entry log with work descriptions
-│   ├── 04-deliverable-chain.md  # (Planned) Input/output mapping for each phase
-│   └── 05-agent-design.md       # (Planned) AI agent architecture and capabilities
+│   ├── 04-deliverable-chain.md  # Input/output mapping for each deliverable
+│   └── 05-agent-design.md       # Modular agent architecture — 8 modules with automation assessments
 ├── data/
 │   ├── bqe_all_projects.json    # Full BQE project dump (3,987 projects)
 │   ├── bqe_candidates.json      # Filtered candidate projects
@@ -41,6 +41,14 @@ permit_project/
 ## Key Decisions Log
 
 All major decisions are documented in `docs/01-project-selection.md` with rationale.
+
+### Design Principles
+
+1. **Modular, not monolithic.** We are NOT building a single end-to-end agent. Each phase (and sub-phase) of the permitting workflow is treated as an independent module that can be developed, tested, and validated separately. Some modules may be well-suited to AI automation; others may not be — and that's a valid finding.
+
+2. **Validate against known outputs.** Each module can be tested by feeding it the same inputs the human team used and comparing its outputs to the actual project deliverables.
+
+3. **Seams follow the deliverable chain.** Module boundaries align with the natural dependency breaks identified in `docs/04-deliverable-chain.md`.
 
 ## Tools Used
 
