@@ -2,3 +2,17 @@ settings.local.json
 *.pyc
 __pycache__/
 .DS_Store
+*.egg-info/
+dist/
+build/
+.venv/
+.pytest_cache/
+
+# Proprietary reference files (client data, spec sheets, workbooks)
+# See reference/MANIFEST.md for file inventory and SHA-256 hashes
+reference/workbook/
+reference/client_docs/
+templates/*.xlsm
+
+# Output files
+output/

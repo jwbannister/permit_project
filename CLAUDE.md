@@ -24,6 +24,7 @@ Air Sciences Inc. is an environmental consulting firm specializing in air qualit
 ```
 permit_project/
 ├── CLAUDE.md                    # This file
+├── pyproject.toml               # Python package config (eipop)
 ├── docs/
 │   ├── 01-project-selection.md  # How and why we chose this project
 │   ├── 02-project-anatomy.md    # Detailed analysis of the reference project
@@ -36,6 +37,20 @@ permit_project/
 │   ├── bqe_candidates.json      # Filtered candidate projects
 │   ├── bqe_target_detail.json   # Detailed billing data for shortlisted projects
 │   └── 270-10-1_time_entries_raw.json  # Raw time entries with memos
+├── reference/                   # Proprietary reference files (git-ignored, see MANIFEST.md)
+│   ├── MANIFEST.md              # File inventory with SHA-256 hashes
+│   ├── workbook/                # Reference .xlsm (validation target)
+│   └── client_docs/             # Spec sheets, nameplate photo, AP-42, CFR docs
+├── templates/                   # Workbook templates (git-ignored)
+│   └── LN_WFH_EmisInv_template.xlsm  # Reference workbook with data rows cleared
+├── src/eipop/                   # EI-POP module source code
+│   ├── parsers/                 # Document parsers (spec sheets, nameplate, AP-42)
+│   ├── models/                  # Data models (SourceSpec, EmissionFactors)
+│   ├── calcs/                   # Calculation engine (diesel, emission rates, model rates)
+│   ├── excel/                   # Excel writer and column mapping
+│   └── validation/              # Cell-by-cell comparison against reference
+├── tests/                       # Test suite
+├── scripts/                     # CLI entry points
 └── analysis/                    # Working analysis scripts and outputs
 ```
 

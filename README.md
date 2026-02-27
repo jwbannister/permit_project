@@ -28,6 +28,7 @@ If an AI agent can meaningfully assist with or reproduce portions of this workfl
 | [03-time-analysis.md](docs/03-time-analysis.md) | Complete time entry log with work descriptions and workflow reconstruction |
 | [04-deliverable-chain.md](docs/04-deliverable-chain.md) | Complete input/output mapping for every deliverable |
 | [05-agent-design.md](docs/05-agent-design.md) | Modular agent architecture — 8 modules with automation assessments |
+| [06-success-criteria.md](docs/06-success-criteria.md) | Three-tier success definition: calculation, regulatory, generalization |
 
 ## Reference Project
 
@@ -44,5 +45,7 @@ If an AI agent can meaningfully assist with or reproduce portions of this workfl
 - [x] Time entry analysis and workflow reconstruction
 - [x] Deliverable chain mapping (inputs/outputs per phase)
 - [x] AI agent design specification
-- [ ] Prototype agent development
+- [x] Success criteria defined (three tiers)
+- [ ] **EI-POP prototype (in progress)** — emissions inventory population, single source (fire pump S2.002)
 - [ ] Validation against reference project
+- [ ] Expand to full source inventory
