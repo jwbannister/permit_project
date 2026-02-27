@@ -78,7 +78,9 @@ def model_emission_rates(
         model_so2_pph = emergency_model_pph(rates["SO2"]["tpy"])
     else:
         # Non-emergency: use actual hourly rate
-        model_nox_pph = rates["NOx"]["pph"] * nox_isr
+        # ISR is stored as a parameter for AERMOD but does not reduce
+        # the model lb/hr or g/s values in the Proc sheet.
+        model_nox_pph = rates["NOx"]["pph"]
         model_so2_pph = rates["SO2"]["pph"]
 
     result = {

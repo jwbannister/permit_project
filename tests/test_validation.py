@@ -358,6 +358,190 @@ def _build_s2001_values() -> dict[str, object]:
     return values
 
 
+class TestPropaneValidation:
+    """Compare Python calculation engine for all propane sources (rows 8-24)."""
+
+    def test_all_propane_rows_match(self):
+        import openpyxl
+        wb = openpyxl.load_workbook(REFERENCE, data_only=True)
+        ws = wb["Proc"]
+
+        total_mismatches = 0
+        details = []
+
+        for row in range(8, 25):
+            sid = ws.cell(row=row, column=1).value
+            fuel = ws.cell(row=row, column=21).value
+            acfm = ws.cell(row=row, column=71).value
+            ht = ws.cell(row=row, column=68).value
+            dia = ws.cell(row=row, column=73).value
+            temp = ws.cell(row=row, column=69).value
+            nox_isr = ws.cell(row=row, column=91).value or 0.1
+            desc = ws.cell(row=row, column=8).value or ""
+
+            values = _build_propane_values(
+                sid, desc, fuel, acfm, ht, dia, temp, nox_isr,
+            )
+            results = compare_row_to_reference(REFERENCE, row, values, rel_tol=1e-3)
+            mismatches = [r for r in results if r.status == CellStatus.MISMATCH]
+            total_mismatches += len(mismatches)
+            for r in mismatches:
+                details.append(
+                    f"  Row {row} ({sid}) {r.column} ({r.field}): "
+                    f"expected={r.expected}, actual={r.actual}"
+                )
+
+        wb.close()
+
+        if total_mismatches > 0:
+            pytest.fail(
+                f"{total_mismatches} mismatches across propane rows:\n"
+                + "\n".join(details)
+            )
+
+    def test_propane_match_count(self):
+        """Verify meaningful comparison count across all propane rows."""
+        import openpyxl
+        wb = openpyxl.load_workbook(REFERENCE, data_only=True)
+        ws = wb["Proc"]
+
+        total_matched = 0
+        for row in range(8, 25):
+            sid = ws.cell(row=row, column=1).value
+            fuel = ws.cell(row=row, column=21).value
+            acfm = ws.cell(row=row, column=71).value
+            ht = ws.cell(row=row, column=68).value
+            dia = ws.cell(row=row, column=73).value
+            temp = ws.cell(row=row, column=69).value
+            nox_isr = ws.cell(row=row, column=91).value or 0.1
+            desc = ws.cell(row=row, column=8).value or ""
+
+            values = _build_propane_values(
+                sid, desc, fuel, acfm, ht, dia, temp, nox_isr,
+            )
+            results = compare_row_to_reference(REFERENCE, row, values, rel_tol=1e-3)
+            total_matched += sum(1 for r in results if r.status == CellStatus.MATCH)
+
+        wb.close()
+        # 17 rows × ~90 cells each = ~1530
+        assert total_matched >= 1500, f"Only {total_matched} matches across 17 rows"
+
+
+class TestDieselTankValidation:
+    """Compare Python calculation for IA1.109 diesel storage tank (row 25)."""
+
+    def test_all_values_match_reference(self):
+        values = _build_diesel_tank_values()
+        results = compare_row_to_reference(REFERENCE, 25, values, rel_tol=1e-3)
+
+        mismatches = [r for r in results if r.status == CellStatus.MISMATCH]
+        if mismatches:
+            details = "\n".join(
+                f"  {r.column} ({r.field}): expected={r.expected}, actual={r.actual}"
+                for r in mismatches
+            )
+            pytest.fail(f"{len(mismatches)} mismatched values:\n{details}")
+
+
+def _build_propane_values(
+    sid, desc, fuel_gal_hr, acfm, rel_ht_ft, dia_ft, temp_f, nox_isr,
+) -> dict[str, object]:
+    """Build comparison values for a propane combustion source."""
+    from eipop.calcs.diesel_engine import temp_F_to_K, ft_to_m, stack_velocity_fps
+
+    ef_dict = {
+        "PM": 0.7, "PM10": 0.7, "PM2.5": 0.7,
+        "CO": 7.5, "NOx": 13.0, "SO2": 1.5, "VOC": 1.0,
+    }
+    tp_hr = fuel_gal_hr / 1000
+    rates = calc_all_rates(ef_dict, "lb/kgal", tp_hr, "kgal", 24.0, 8760.0)
+    model = model_emission_rates(rates, is_emergency=False, nox_isr=nox_isr)
+    vel_fps = stack_velocity_fps(acfm, dia_ft)
+
+    values = {
+        "source_id": sid, "source_count": 1, "new_or_modified": "Yes",
+        "system_id": "IA", "system_desc": "Insignificant Activities",
+        "scc": "1-03-010-02", "source_desc": desc,
+        "throughput_unit": "kgal", "throughput_material": "propane",
+        "operating_hrs_day": 24.0, "operating_hrs_yr": 8760.0,
+        "fuel_type": "propane", "fuel_consumption": fuel_gal_hr,
+        "fuel_unit": "gal",
+        "EF_PM": 0.7, "EF_CO": 7.5, "EF_NOx": 13.0,
+        "EF_unit": "lb/kgal", "source_type": "POINT",
+        "exhaust_temp_F": temp_f, "acfm": acfm, "NOx_ISR": nox_isr,
+        "throughput_hr": tp_hr, "throughput_day": tp_hr * 24.0,
+        "throughput_yr": tp_hr * 8760.0,
+        "EF_PM10": 0.7, "EF_PM2_5": 0.7, "EF_SO2": 1.5, "EF_VOC": 1.0,
+        "release_height_ft": rel_ht_ft, "diameter_ft": dia_ft,
+        "velocity_fps": vel_fps,
+        "release_height_m": ft_to_m(rel_ht_ft),
+        "temp_K": temp_F_to_K(temp_f),
+        "velocity_mps": vel_fps / 3.28084,
+        "diameter_m": ft_to_m(dia_ft),
+        "NOx_model_pph": model["NOx_model_pph"],
+        "SO2_model_pph": model["SO2_model_pph"],
+        "EF_PM_u": 0.7, "EF_PM10_u": 0.7, "EF_PM2_5_u": 0.7,
+        "EF_CO_u": 7.5, "EF_NOx_u": 13.0, "EF_SO2_u": 1.5, "EF_VOC_u": 1.0,
+        "EF_unit_u": "lb/kgal",
+    }
+
+    for pol in ["PM", "PM10", "CO", "NOx", "SO2", "VOC"]:
+        values[f"{pol}_pph"] = rates[pol]["pph"]
+        values[f"{pol}_ppd"] = rates[pol]["ppd"]
+        values[f"{pol}_tpy"] = rates[pol]["tpy"]
+        values[f"{pol}_pph_u"] = rates[pol]["pph"]
+        values[f"{pol}_tpy_u"] = rates[pol]["tpy"]
+    values["PM2_5_pph"] = rates["PM2.5"]["pph"]
+    values["PM2_5_ppd"] = rates["PM2.5"]["ppd"]
+    values["PM2_5_tpy"] = rates["PM2.5"]["tpy"]
+    values["PM2_5_pph_u"] = rates["PM2.5"]["pph"]
+    values["PM2_5_tpy_u"] = rates["PM2.5"]["tpy"]
+
+    for key in ("PM10_24_gps", "PM2_5_24_gps", "CO_ALL_gps",
+                "NOx_1_gps", "SO2_1_gps", "SO2_ST_gps",
+                "PM2_5_AN_gps", "NOx_AN_gps", "SO2_AN_gps"):
+        values[key] = model[key]
+
+    return values
+
+
+def _build_diesel_tank_values() -> dict[str, object]:
+    """Build comparison values for IA1.109 diesel storage tank."""
+    ef_dict = {
+        "PM": 0.0, "PM10": 0.0, "PM2.5": 0.0,
+        "CO": 0.0, "NOx": 0.0, "SO2": 0.0, "VOC": 16.64,
+    }
+    rates = calc_all_rates(ef_dict, "lb/yr", 0.0, "gal", 24.0, 8760.0)
+
+    values = {
+        "source_id": "IA1.109", "source_count": 1, "new_or_modified": "Yes",
+        "system_id": "IA", "system_desc": "Insignificant Activities",
+        "scc": "4-04-001-99",
+        "source_desc": "Diesel tank (20,000 gal)",
+        "throughput_unit": "gal", "throughput_material": "diesel",
+        "operating_hrs_day": 24.0, "operating_hrs_yr": 8760.0,
+        "EF_unit": "lb/yr", "EF_VOC": 16.64,
+        "NOx_model_pph": 0.0, "SO2_model_pph": 0.0,
+        "EF_PM_u": 0.0, "EF_PM10_u": 0.0, "EF_PM2_5_u": 0.0,
+        "EF_CO_u": 0.0, "EF_NOx_u": 0.0, "EF_SO2_u": 0.0,
+        "EF_VOC_u": 16.64, "EF_unit_u": "lb/yr",
+    }
+
+    for pol in ["PM", "PM10", "CO", "NOx", "SO2", "VOC"]:
+        values[f"{pol}_pph"] = rates[pol]["pph"]
+        values[f"{pol}_ppd"] = rates[pol]["ppd"]
+        values[f"{pol}_tpy"] = rates[pol]["tpy"]
+        values[f"{pol}_pph_u"] = rates[pol]["pph"]
+        values[f"{pol}_tpy_u"] = rates[pol]["tpy"]
+    values["PM2_5_pph"] = rates["PM2.5"]["pph"]
+    values["PM2_5_ppd"] = rates["PM2.5"]["ppd"]
+    values["PM2_5_tpy"] = rates["PM2.5"]["tpy"]
+    values["PM2_5_pph_u"] = rates["PM2.5"]["pph"]
+    values["PM2_5_tpy_u"] = rates["PM2.5"]["tpy"]
+
+    return values
+
+
 class TestS2001Validation:
     """Compare Python calculation engine output for S2.001 (emergency generator)."""
 
