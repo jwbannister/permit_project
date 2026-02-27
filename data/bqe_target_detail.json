@@ -1,0 +1,349 @@
+{
+  "134-31A-1": {
+    "name": "Air Permitting and Compliance",
+    "contract": 94430.0,
+    "manager": "Douglas Steen",
+    "client": "134-31A CC&V General Air Consulting",
+    "start_date": "2024-11-11",
+    "total_hours": 275.8,
+    "first_entry": "2025-01-03",
+    "last_entry": "2025-08-28",
+    "personnel": {
+      "Douglas B Steen": {
+        "hours": 110.8,
+        "entries": 43
+      },
+      "Ruben V Teasyatwho": {
+        "hours": 6.5,
+        "entries": 8
+      },
+      "Dulce Gonzalez-Beltran": {
+        "hours": 88.8,
+        "entries": 23
+      },
+      "Jaden R Hutchins": {
+        "hours": 5.5,
+        "entries": 2
+      },
+      "Alyssa D Stanley": {
+        "hours": 8.2,
+        "entries": 3
+      },
+      "Holly A Saucier": {
+        "hours": 25.5,
+        "entries": 26
+      },
+      "Casey A Fee": {
+        "hours": 10.0,
+        "entries": 4
+      },
+      "Max M Hampson": {
+        "hours": 15.8,
+        "entries": 4
+      },
+      "Giedrius Gylys": {
+        "hours": 4.8,
+        "entries": 1
+      }
+    },
+    "monthly_hours": {
+      "2025-01": 90.5,
+      "2025-02": 15.8,
+      "2025-03": 8.8,
+      "2025-04": 44.2,
+      "2025-05": 70.5,
+      "2025-06": 26.8,
+      "2025-07": 16.8,
+      "2025-08": 2.5
+    }
+  },
+  "134-31B-1": {
+    "name": "Air Dispersion Modeling Support",
+    "contract": 94900.0,
+    "manager": "Douglas Steen",
+    "client": "134-31B CC&V Air Dispersion Modeling",
+    "start_date": "2025-01-07",
+    "total_hours": 287.2,
+    "first_entry": "2025-01-17",
+    "last_entry": "2025-07-09",
+    "personnel": {
+      "Kevin S Lewis": {
+        "hours": 120.2,
+        "entries": 36
+      },
+      "Max M Hampson": {
+        "hours": 130.2,
+        "entries": 34
+      },
+      "Douglas B Steen": {
+        "hours": 22.5,
+        "entries": 15
+      },
+      "Jaden R Hutchins": {
+        "hours": 11.0,
+        "entries": 4
+      },
+      "Maliha J Memon": {
+        "hours": 2.8,
+        "entries": 2
+      },
+      "Ejaz A Memon": {
+        "hours": 0.5,
+        "entries": 1
+      }
+    },
+    "monthly_hours": {
+      "2025-01": 9.8,
+      "2025-02": 33.2,
+      "2025-03": 4.5,
+      "2025-04": 48.8,
+      "2025-05": 13.2,
+      "2025-06": 159.0,
+      "2025-07": 18.8
+    }
+  },
+  "270-10-1": {
+    "name": "Work Force Hub Air Quality Permitting",
+    "contract": 41200.0,
+    "manager": "Elizabeth Huelson",
+    "client": "270-10 Work Force Hub Permitting",
+    "start_date": "2024-11-22",
+    "total_hours": 224.5,
+    "first_entry": "2024-11-21",
+    "last_entry": "2025-05-23",
+    "personnel": {
+      "Timothy S Martin": {
+        "hours": 70.5,
+        "entries": 13
+      },
+      "Ruben V Teasyatwho": {
+        "hours": 0.5,
+        "entries": 1
+      },
+      "Elizabeth M Huelson": {
+        "hours": 58.2,
+        "entries": 44
+      },
+      "Alyssa D Stanley": {
+        "hours": 73.2,
+        "entries": 17
+      },
+      "Holly A Saucier": {
+        "hours": 9.5,
+        "entries": 8
+      },
+      "Max M Hampson": {
+        "hours": 11.2,
+        "entries": 2
+      },
+      "Dulce Gonzalez-Beltran": {
+        "hours": 1.2,
+        "entries": 1
+      }
+    },
+    "monthly_hours": {
+      "2024-11": 1.2,
+      "2024-12": 14.5,
+      "2025-01": 151.2,
+      "2025-02": 48.0,
+      "2025-03": 1.8,
+      "2025-04": 0.2,
+      "2025-05": 7.5
+    }
+  },
+  "434-6-1": {
+    "name": "Compliance Reports",
+    "contract": 39220.0,
+    "manager": "Dulce Gonzalez-Beltran",
+    "client": "434-6 2025 GRW Air Compliance Reporting",
+    "start_date": "2024-12-27",
+    "total_hours": 257.8,
+    "first_entry": "2025-01-06",
+    "last_entry": "2025-12-03",
+    "personnel": {
+      "Dulce Gonzalez-Beltran": {
+        "hours": 254.0,
+        "entries": 86
+      },
+      "Kevin S Lewis": {
+        "hours": 1.5,
+        "entries": 4
+      },
+      "Maliha J Memon": {
+        "hours": 2.0,
+        "entries": 1
+      },
+      "Jaden R Hutchins": {
+        "hours": 0.2,
+        "entries": 1
+      }
+    },
+    "monthly_hours": {
+      "2025-01": 104.0,
+      "2025-02": 47.8,
+      "2025-03": 34.8,
+      "2025-04": 12.2,
+      "2025-05": 0.2,
+      "2025-06": 2.0,
+      "2025-07": 45.0,
+      "2025-09": 2.8,
+      "2025-10": 6.5,
+      "2025-12": 2.5
+    }
+  },
+  "447-2-1": {
+    "name": "Permitting",
+    "contract": 70500.0,
+    "manager": "Douglas Steen",
+    "client": "447-2 Keenesburg Mine",
+    "start_date": "2024-04-15",
+    "total_hours": 181.0,
+    "first_entry": "2024-03-22",
+    "last_entry": "2025-08-25",
+    "personnel": {
+      "Max M Hampson": {
+        "hours": 75.8,
+        "entries": 24
+      },
+      "Giedrius Gylys": {
+        "hours": 3.0,
+        "entries": 3
+      },
+      "Douglas B Steen": {
+        "hours": 81.2,
+        "entries": 49
+      },
+      "Holly A Saucier": {
+        "hours": 1.0,
+        "entries": 3
+      },
+      "Dulce Gonzalez-Beltran": {
+        "hours": 5.0,
+        "entries": 4
+      },
+      "Ruben V Teasyatwho": {
+        "hours": 5.5,
+        "entries": 8
+      },
+      "Jaden R Hutchins": {
+        "hours": 9.5,
+        "entries": 3
+      }
+    },
+    "monthly_hours": {
+      "2024-03": 6.0,
+      "2024-04": 4.0,
+      "2024-05": 6.0,
+      "2024-06": 0.8,
+      "2024-08": 2.5,
+      "2024-09": 0.2,
+      "2024-10": 6.0,
+      "2024-12": 25.0,
+      "2025-01": 58.5,
+      "2025-02": 30.5,
+      "2025-03": 9.2,
+      "2025-04": 16.0,
+      "2025-08": 16.2
+    }
+  },
+  "447-2-2": {
+    "name": "Compliance",
+    "contract": 15000.0,
+    "manager": "Douglas Steen",
+    "client": "447-2 Keenesburg Mine",
+    "start_date": "2024-04-15",
+    "total_hours": 232.0,
+    "first_entry": "2024-03-27",
+    "last_entry": "2025-12-05",
+    "personnel": {
+      "Casey A Fee": {
+        "hours": 49.5,
+        "entries": 19
+      },
+      "Douglas B Steen": {
+        "hours": 155.2,
+        "entries": 79
+      },
+      "Kevin S Lewis": {
+        "hours": 0.2,
+        "entries": 1
+      },
+      "Holly A Saucier": {
+        "hours": 4.5,
+        "entries": 7
+      },
+      "Lyndsey N DeMarco": {
+        "hours": 1.0,
+        "entries": 1
+      },
+      "Dulce Gonzalez-Beltran": {
+        "hours": 18.5,
+        "entries": 7
+      },
+      "Max M Hampson": {
+        "hours": 0.8,
+        "entries": 1
+      },
+      "Ruben V Teasyatwho": {
+        "hours": 2.2,
+        "entries": 1
+      }
+    },
+    "monthly_hours": {
+      "2024-03": 10.0,
+      "2024-04": 6.2,
+      "2024-07": 3.2,
+      "2024-08": 1.8,
+      "2024-09": 26.8,
+      "2024-10": 28.5,
+      "2024-12": 9.0,
+      "2025-02": 3.5,
+      "2025-03": 5.0,
+      "2025-04": 26.2,
+      "2025-05": 2.2,
+      "2025-06": 0.8,
+      "2025-07": 33.0,
+      "2025-08": 43.2,
+      "2025-09": 6.8,
+      "2025-10": 22.0,
+      "2025-11": 2.2,
+      "2025-12": 1.5
+    }
+  },
+  "450-2-1": {
+    "name": "QLNG Pre-FEED Air Quality Support",
+    "contract": 50000.0,
+    "manager": "Elizabeth Huelson",
+    "client": "450-2 QLNG Pre-FEED Air Quality Support",
+    "start_date": "2025-08-13",
+    "total_hours": 170.2,
+    "first_entry": "2025-08-12",
+    "last_entry": "2025-09-27",
+    "personnel": {
+      "Timothy S Martin": {
+        "hours": 99.0,
+        "entries": 18
+      },
+      "Elizabeth M Huelson": {
+        "hours": 44.5,
+        "entries": 25
+      },
+      "John F Faust": {
+        "hours": 0.5,
+        "entries": 1
+      },
+      "Kevin S Lewis": {
+        "hours": 25.2,
+        "entries": 11
+      },
+      "Dulce Gonzalez-Beltran": {
+        "hours": 1.0,
+        "entries": 2
+      }
+    },
+    "monthly_hours": {
+      "2025-08": 100.5,
+      "2025-09": 69.8
+    }
+  }
+}

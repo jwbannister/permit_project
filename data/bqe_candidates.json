@@ -1,0 +1,522 @@
+[
+  {
+    "code": "448-1-1",
+    "name": "Develop Classification Algorithm",
+    "client": "448-1 Denver Regional Air Quality Council",
+    "manager": "Lyndsey DeMarco",
+    "start": "2024-02-26",
+    "contract": 19230.0
+  },
+  {
+    "code": "448-1-2",
+    "name": "5-Year Assessment",
+    "client": "448-1 Denver Regional Air Quality Council",
+    "manager": "Lyndsey DeMarco",
+    "start": "2024-02-26",
+    "contract": 11496.0
+  },
+  {
+    "code": "448-1-3",
+    "name": "ESRI Online Dashboard Prototype",
+    "client": "448-1 Denver Regional Air Quality Council",
+    "manager": "Lyndsey DeMarco",
+    "start": "2024-02-26",
+    "contract": 8140.0
+  },
+  {
+    "code": "448-1-4",
+    "name": "Meetings and Workshops",
+    "client": "448-1 Denver Regional Air Quality Council",
+    "manager": "Lyndsey DeMarco",
+    "start": "2024-02-26",
+    "contract": 3980.0
+  },
+  {
+    "code": "59-60C-8",
+    "name": "2024 Air Quality Permit Compliance",
+    "client": "59-60C Western 102 Power Plant 2024 Compliance",
+    "manager": "Elizabeth Huelson",
+    "start": "2024-03-11",
+    "contract": 6000.0
+  },
+  {
+    "code": "59-52F-43",
+    "name": "2024 Q2 Air Compliance and Permitting",
+    "client": "59-52F NGM - Cortez District",
+    "manager": "Holly Saucier",
+    "start": "2024-03-14",
+    "contract": 12646.0
+  },
+  {
+    "code": "59-52G-43",
+    "name": "2024 NGM TRI Snow/Met Data",
+    "client": "59-52G NGM - Cortez District",
+    "manager": "Holly Saucier",
+    "start": "2024-03-27",
+    "contract": 6000.0
+  },
+  {
+    "code": "59-82-1",
+    "name": "Class II AQOP Admin Renewal",
+    "client": "59-82 Long Canyon Class II AQOP Renewal",
+    "manager": "Elizabeth Huelson",
+    "start": "2024-04-02",
+    "contract": 8400.0
+  },
+  {
+    "code": "260-7B-13",
+    "name": "Heap Leach Pad \u2013 Phase 3B Construction COLA",
+    "client": "260-7B Heap Leach Pad \u2013 Phase 3B Construction COLA",
+    "manager": "Elizabeth Huelson",
+    "start": "2024-04-08",
+    "contract": 3500.0
+  },
+  {
+    "code": "318-4E-10",
+    "name": "2024 General Permitting",
+    "client": "318-4E Cricket Mountain",
+    "manager": "Douglas Steen",
+    "start": "2024-04-15",
+    "contract": 4000.0
+  },
+  {
+    "code": "318-4E-11",
+    "name": "2024 General Compliance",
+    "client": "318-4E Cricket Mountain",
+    "manager": "Douglas Steen",
+    "start": "2024-04-15",
+    "contract": 3500.0
+  },
+  {
+    "code": "447-2-1",
+    "name": "Permitting",
+    "client": "447-2 Keenesburg Mine",
+    "manager": "Douglas Steen",
+    "start": "2024-04-15",
+    "contract": 70500.0
+  },
+  {
+    "code": "447-2-2",
+    "name": "Compliance",
+    "client": "447-2 Keenesburg Mine",
+    "manager": "Douglas Steen",
+    "start": "2024-04-15",
+    "contract": 15000.0
+  },
+  {
+    "code": "59-81B-1",
+    "name": "Public Meeting Support - Air Quality",
+    "client": "59-81B Robertson Public Meeting Support",
+    "manager": "Elizabeth Huelson",
+    "start": "2024-04-15",
+    "contract": 6320.0
+  },
+  {
+    "code": "270-3F-9",
+    "name": "Carbon Accounting Workbook Support",
+    "client": "270-3F Air Quality Permit Compliance Support",
+    "manager": "Elizabeth Huelson",
+    "start": "2024-04-28",
+    "contract": 4772.0
+  },
+  {
+    "code": "235-16B-10",
+    "name": "SAD Renewal",
+    "client": "235-16B Trenton Canyon",
+    "manager": "Douglas Steen",
+    "start": "2024-05-02",
+    "contract": 3000.0
+  },
+  {
+    "code": "235-17A-10",
+    "name": "SAD Renewal",
+    "client": "235-17A Buffalo Valley",
+    "manager": "Douglas Steen",
+    "start": "2024-05-02",
+    "contract": 3000.0
+  },
+  {
+    "code": "446-1A-2",
+    "name": "Semper Gardens Initial Permitting",
+    "client": "446-1A Toll Brothers",
+    "manager": "Douglas Steen",
+    "start": "2024-05-02",
+    "contract": 6312.0
+  },
+  {
+    "code": "439-2-1",
+    "name": "Community Presentation",
+    "client": "439-2 CAC N Whittier and Avocado Heights",
+    "manager": "Katheryn Kolesar",
+    "start": "2024-05-31",
+    "contract": 2000.0
+  },
+  {
+    "code": "99-403C-2",
+    "name": "General NEPA Air Support",
+    "client": "99-403C 2024 General NEPA Permitting Support",
+    "manager": "Elizabeth Huelson",
+    "start": "2024-05-31",
+    "contract": 37100.0
+  },
+  {
+    "code": "346-7-1",
+    "name": "Class II AQOP Modification",
+    "client": "346-7 Stillwater Project",
+    "manager": "Ejaz Memon",
+    "start": "2024-06-17",
+    "contract": 9600.0
+  },
+  {
+    "code": "318-1G-10",
+    "name": "Permitting Modification",
+    "client": "318-1G Pilot Peak",
+    "manager": "Douglas Steen",
+    "start": "2024-06-20",
+    "contract": 16000.0
+  },
+  {
+    "code": "318-1G-11",
+    "name": "2024 General Air Compliance",
+    "client": "318-1G Pilot Peak",
+    "manager": "Douglas Steen",
+    "start": "2024-06-20",
+    "contract": 11200.0
+  },
+  {
+    "code": "59-52H-43",
+    "name": "2024 Q3 Air Compliance and Permitting",
+    "client": "59-52H NGM - Cortez District",
+    "manager": "Holly Saucier",
+    "start": "2024-08-05",
+    "contract": 12645.0
+  },
+  {
+    "code": "434-5-1",
+    "name": "Air Support",
+    "client": "434-5 GRW Air Quality Support 2024",
+    "manager": "Kevin Lewis",
+    "start": "2024-08-13",
+    "contract": 25000.0
+  },
+  {
+    "code": "337-1A-1",
+    "name": "2024 FMACT support",
+    "client": "337-1A Coeur Wharf",
+    "manager": "Douglas Steen",
+    "start": "2024-08-16",
+    "contract": 4000.0
+  },
+  {
+    "code": "437-2-1",
+    "name": "Monitoring and Field Support",
+    "client": "437-2 POWER Engineers - LADWP Bridge Contract",
+    "manager": "John Bannister",
+    "start": "2024-08-26",
+    "contract": 67340.0
+  },
+  {
+    "code": "346-8-1",
+    "name": "ATC-PTO Modification",
+    "client": "346-8 Imperial County Portable Engines",
+    "manager": "Ejaz Memon",
+    "start": "2024-08-27",
+    "contract": 3000.0
+  },
+  {
+    "code": "318-5C-10",
+    "name": "Permitting",
+    "client": "318-5C Indian Creek Plant",
+    "manager": "Douglas Steen",
+    "start": "2024-09-27",
+    "contract": 3000.0
+  },
+  {
+    "code": "318-5C-11",
+    "name": "Compliance",
+    "client": "318-5C Indian Creek Plant",
+    "manager": "Douglas Steen",
+    "start": "2024-09-27",
+    "contract": 5000.0
+  },
+  {
+    "code": "448-1-5",
+    "name": "Test and Refine Algorithm and Final Report",
+    "client": "448-1 Denver Regional Air Quality Council",
+    "manager": "Lyndsey DeMarco",
+    "start": "2024-10-31",
+    "contract": 9520.0
+  },
+  {
+    "code": "450-1-1",
+    "name": "Winter Park Resort EA Air Quality Support",
+    "client": "450-1 Winter Park Resort EA Support",
+    "manager": "Elizabeth Huelson",
+    "start": "2024-11-01",
+    "contract": 5000.0
+  },
+  {
+    "code": "59-52I-43",
+    "name": "2024 Q4 Air Compliance and Permitting",
+    "client": "59-52I NGM - Cortez District",
+    "manager": "Holly Saucier",
+    "start": "2024-11-01",
+    "contract": 12645.0
+  },
+  {
+    "code": "134-31A-1",
+    "name": "Air Permitting and Compliance",
+    "client": "134-31A CC&V General Air Consulting",
+    "manager": "Douglas Steen",
+    "start": "2024-11-11",
+    "contract": 94430.0
+  },
+  {
+    "code": "446-1B-3",
+    "name": "Berthoud Project Initial Permitting",
+    "client": "446-1B Toll Brothers",
+    "manager": "Holly Saucier",
+    "start": "2024-11-13",
+    "contract": 4916.0
+  },
+  {
+    "code": "425-3A-1",
+    "name": "JCG PM Modeling",
+    "client": "425-3A JCG PM Modeling",
+    "manager": "Holly Saucier",
+    "start": "2024-11-18",
+    "contract": 30000.0
+  },
+  {
+    "code": "235-17B-12",
+    "name": "AQIA - Prefeasibility",
+    "client": "235-17B Buffalo Valley",
+    "manager": "Douglas Steen",
+    "start": "2024-11-19",
+    "contract": 91300.0
+  },
+  {
+    "code": "446-1C-4",
+    "name": "Parker Project Initial Permitting",
+    "client": "446-1C Toll Brothers",
+    "manager": "Holly Saucier",
+    "start": "2024-11-19",
+    "contract": 4916.0
+  },
+  {
+    "code": "270-10-1",
+    "name": "Work Force Hub Air Quality Permitting",
+    "client": "270-10 Work Force Hub Permitting",
+    "manager": "Elizabeth Huelson",
+    "start": "2024-11-22",
+    "contract": 41200.0
+  },
+  {
+    "code": "366-1-2",
+    "name": "AQ and Meteorological Plan",
+    "client": "366-1 Dakota Gold Richmond Hill",
+    "manager": "Giedrius Gylys",
+    "start": "2024-12-09",
+    "contract": 30000.0
+  },
+  {
+    "code": "59-43F-105",
+    "name": "Carlin Complex",
+    "client": "59-43F 2025 Carlin Air Compliance and Permitting",
+    "manager": "Elizabeth Huelson",
+    "start": "2024-12-17",
+    "contract": 53700.0
+  },
+  {
+    "code": "434-6-1",
+    "name": "Compliance Reports",
+    "client": "434-6 2025 GRW Air Compliance Reporting",
+    "manager": "Dulce Gonzalez-Beltran",
+    "start": "2024-12-27",
+    "contract": 39220.0
+  },
+  {
+    "code": "337-1B-1",
+    "name": "2025 Air Compliance Support",
+    "client": "337-1B Coeur Wharf",
+    "manager": "Douglas Steen",
+    "start": "2025-01-03",
+    "contract": 4000.0
+  },
+  {
+    "code": "134-31B-1",
+    "name": "Air Dispersion Modeling Support",
+    "client": "134-31B CC&V Air Dispersion Modeling",
+    "manager": "Douglas Steen",
+    "start": "2025-01-07",
+    "contract": 94900.0
+  },
+  {
+    "code": "318-4G-10",
+    "name": "2025 Auxiliary Engine Application",
+    "client": "318-4G Cricket Mountain",
+    "manager": "Douglas Steen",
+    "start": "2025-01-23",
+    "contract": 18500.0
+  },
+  {
+    "code": "59-43F-105A",
+    "name": "Arturo",
+    "client": "59-43F 2025 Carlin Air Compliance and Permitting",
+    "manager": "Elizabeth Huelson",
+    "start": "2025-02-01",
+    "contract": 9600.0
+  },
+  {
+    "code": "281-25-1",
+    "name": "2025 General Air Quality Support",
+    "client": "281-25 Donlin Gold General Air Quality",
+    "manager": "Kevin Lewis",
+    "start": "2025-02-06",
+    "contract": 45000.0
+  },
+  {
+    "code": "318-4H-10",
+    "name": "2025 Crusher Permitting Assessment",
+    "client": "318-4H Cricket Mountain",
+    "manager": "Douglas Steen",
+    "start": "2025-02-26",
+    "contract": 4000.0
+  },
+  {
+    "code": "270-3G-10",
+    "name": "GHG Inventory Update",
+    "client": "270-3G GHG Emission Inventory Update",
+    "manager": "Elizabeth Huelson",
+    "start": "2025-03-06",
+    "contract": 6500.0
+  },
+  {
+    "code": "447-1A-1",
+    "name": "Kersey Application Follow-up and General Compliance & Permitting",
+    "client": "447-1A Kersey Mine",
+    "manager": "Douglas Steen",
+    "start": "2025-03-06",
+    "contract": 10000.0
+  },
+  {
+    "code": "59-43F-105E",
+    "name": "Emigrant",
+    "client": "59-43F 2025 Carlin Air Compliance and Permitting",
+    "manager": "Elizabeth Huelson",
+    "start": "2025-03-24",
+    "contract": 21400.0
+  },
+  {
+    "code": "59-43F-105G",
+    "name": "Goldstrike",
+    "client": "59-43F 2025 Carlin Air Compliance and Permitting",
+    "manager": "Elizabeth Huelson",
+    "start": "2025-03-24",
+    "contract": 42900.0
+  },
+  {
+    "code": "59-43F-105N",
+    "name": "North Area",
+    "client": "59-43F 2025 Carlin Air Compliance and Permitting",
+    "manager": "Elizabeth Huelson",
+    "start": "2025-03-24",
+    "contract": 21300.0
+  },
+  {
+    "code": "59-43F-105Q",
+    "name": "Gold Quarry",
+    "client": "59-43F 2025 Carlin Air Compliance and Permitting",
+    "manager": "Elizabeth Huelson",
+    "start": "2025-03-24",
+    "contract": 31200.0
+  },
+  {
+    "code": "346-12-1",
+    "name": "Class I AQOP Minor Revision and Application Fee",
+    "client": "346-12 Dixie Valley",
+    "manager": "Ejaz Memon",
+    "start": "2025-04-15",
+    "contract": 27000.0
+  },
+  {
+    "code": "281-25B-1",
+    "name": "2025 Camp Met Station Repair",
+    "client": "281-25B Donlin Gold Meteorological Tower",
+    "manager": "Kevin Lewis",
+    "start": "2025-06-03",
+    "contract": 14252.0
+  },
+  {
+    "code": "371-100-1",
+    "name": "Preliminary Regulatory Analysis",
+    "client": "371-100 Estuary Power Southern Nevada Gas Plant",
+    "manager": "Elizabeth Huelson",
+    "start": "2025-06-03",
+    "contract": 10000.0
+  },
+  {
+    "code": "372-100-1",
+    "name": "Paint Booth Air Emissions",
+    "client": "372-100 Sandvik Elko Paint Booth",
+    "manager": "Elizabeth Huelson",
+    "start": "2025-07-07",
+    "contract": 5600.0
+  },
+  {
+    "code": "374-1-1",
+    "name": "Air Quality Review",
+    "client": "374-1 Hydro Spanish Fork Air Quality Review",
+    "manager": "Kevin Lewis",
+    "start": "2025-07-11",
+    "contract": 8700.0
+  },
+  {
+    "code": "450-2-1",
+    "name": "QLNG Pre-FEED Air Quality Support",
+    "client": "450-2 QLNG Pre-FEED Air Quality Support",
+    "manager": "Elizabeth Huelson",
+    "start": "2025-08-13",
+    "contract": 50000.0
+  },
+  {
+    "code": "134-31D-1",
+    "name": "General Air Compliance Support",
+    "client": "134-31D Cripple Creek & Victor",
+    "manager": "Douglas Steen",
+    "start": "2025-09-19",
+    "contract": 41189.0
+  },
+  {
+    "code": "59-58A-9",
+    "name": "NW Deeps AQIA - 2025 BLM Response",
+    "client": "59-58A Nevada Gold Mines LLC - Cortez Mine",
+    "manager": "Elizabeth Huelson",
+    "start": "2025-09-25",
+    "contract": 5000.0
+  },
+  {
+    "code": "134-31E-1",
+    "name": "Air Dispersion Modeling - Continued",
+    "client": "134-31E Cripple Creek & Victor",
+    "manager": "Douglas Steen",
+    "start": "2025-11-05",
+    "contract": 26986.25
+  },
+  {
+    "code": "318-1I-1",
+    "name": "2025.10-2026.12 Permitting & Compliance",
+    "client": "318-1I Pilot Peak Plant",
+    "manager": "Douglas Steen",
+    "start": "2025-11-05",
+    "contract": 20000.0
+  },
+  {
+    "code": "443-1A-2",
+    "name": "EI QAAP Update",
+    "client": "443-1A Spirit Lake EI QAAP Update",
+    "manager": "Elizabeth Huelson",
+    "start": "2025-12-09",
+    "contract": 9660.0
+  }
+]
