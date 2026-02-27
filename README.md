@@ -25,8 +25,9 @@ If an AI agent can meaningfully assist with or reproduce portions of this workfl
 |----------|-------------|
 | [01-project-selection.md](docs/01-project-selection.md) | How we identified and selected the reference project |
 | [02-project-anatomy.md](docs/02-project-anatomy.md) | Detailed analysis of the reference project's structure and deliverables |
-| 03-deliverable-chain.md | (Planned) Input/output mapping for each project phase |
-| 04-agent-design.md | (Planned) AI agent architecture and capability requirements |
+| [03-time-analysis.md](docs/03-time-analysis.md) | Complete time entry log with work descriptions and workflow reconstruction |
+| 04-deliverable-chain.md | (Planned) Input/output mapping for each project phase |
+| 05-agent-design.md | (Planned) AI agent architecture and capability requirements |
 
 ## Reference Project
 
@@ -40,6 +41,7 @@ If an AI agent can meaningfully assist with or reproduce portions of this workfl
 
 - [x] Project selection methodology documented
 - [x] Reference project anatomy documented
+- [x] Time entry analysis and workflow reconstruction
 - [ ] Deliverable chain mapping (inputs/outputs per phase)
 - [ ] AI agent design specification
 - [ ] Prototype agent development

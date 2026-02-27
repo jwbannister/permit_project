@@ -27,12 +27,14 @@ permit_project/
 ├── docs/
 │   ├── 01-project-selection.md  # How and why we chose this project
 │   ├── 02-project-anatomy.md    # Detailed analysis of the reference project
-│   ├── 03-deliverable-chain.md  # Input/output mapping for each phase
-│   └── 04-agent-design.md       # AI agent architecture and capabilities
+│   ├── 03-time-analysis.md      # Complete time entry log with work descriptions
+│   ├── 04-deliverable-chain.md  # (Planned) Input/output mapping for each phase
+│   └── 05-agent-design.md       # (Planned) AI agent architecture and capabilities
 ├── data/
 │   ├── bqe_all_projects.json    # Full BQE project dump (3,987 projects)
 │   ├── bqe_candidates.json      # Filtered candidate projects
-│   └── bqe_target_detail.json   # Detailed billing data for shortlisted projects
+│   ├── bqe_target_detail.json   # Detailed billing data for shortlisted projects
+│   └── 270-10-1_time_entries_raw.json  # Raw time entries with memos
 └── analysis/                    # Working analysis scripts and outputs
 ```
 
